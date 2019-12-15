@@ -12,8 +12,9 @@ export default class Input extends Component {
 					id={this.props.name}
 					name={this.props.name}
 					type={this.props.inputType}
-					placeholder={this.props.placeholder} 
-					/>
+					placeholder={this.props.placeholder}
+					onChange={this.props.handleInput}
+				/>
 			</div>
 		);
 	}

@@ -16,7 +16,7 @@ export default class SettingItem extends Component {
 				"input": ['text', 'number', 'password', 'tel', 'email', 'file'],
 				"texterea": "text",
 				"select": "item",
-				"datapicker": ['date', 'time'],
+				"datapicker": ['date', 'time', 'datetime'],
 				"rediobox": "title",
 				"checkbox": "title"
 			}
