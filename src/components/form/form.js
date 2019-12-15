@@ -75,6 +75,10 @@ export default class Form extends Component {
 						/>
 					);
 				}
+				if (arrform.type === "select") { }
+				if (arrform.type === "radio") { }
+				if (arrform.type === "checkbox") { }
+				if (arrform.type === "datapicker") { }
 			}
 		);
 		console.log('todoItems', todoItems)

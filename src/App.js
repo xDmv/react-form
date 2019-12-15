@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './bootstrap.css';
 import Form from './components/form';
 import SettingForm from "./components/setting-form";
 
