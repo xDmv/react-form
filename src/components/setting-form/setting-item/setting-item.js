@@ -6,7 +6,7 @@ export default class SettingItem extends Component {
 		itemsselect: [
 			{ id: 1, label: "Однострочное поле", value: "input" },
 			{ id: 2, label: "Многострочное поле", value: "texterea" },
-			{ id: 3, label: "Поле выбора", value: "select" },
+			{ id: 3, label: "Поле выбора (select)", value: "select" },
 			{ id: 4, label: "Поле выбора даты или времени", value: "datapicker" },
 			{ id: 5, label: "Поле rediobox", value: "rediobox" },
 			{ id: 6, label: "Поле checkbox", value: "checkbox" }

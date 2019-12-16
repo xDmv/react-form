@@ -18,7 +18,7 @@ export default class Form extends Component {
 					value: "dix@gmail.com",
 					onChange: "",
 					placeholder: "Input email",
-					regexp: /^[\w-\.+]+@[\w-]+\.[a-z]{2,4}(\.[a-z]{2,4})?(\.[a-z]{2,4})?$/i,
+					regexp: `^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`,
 					error: "Incorrect E-mail"
 				},
 				{
@@ -29,7 +29,7 @@ export default class Form extends Component {
 					name: "text",
 					value: "Ditrix",
 					onChange: "",
-					regexp: /\S{4, 48}/,
+					regexp: "^[A-Za-zА-Яа-яЁё]{4,}",
 					placeholder: "Input text",
 					error: "Incorrect First Name!"
 				},
@@ -68,6 +68,15 @@ export default class Form extends Component {
 					mindate: '',
 					maxdate: '',
 					dateFormat: "DD.MM.YYYY"
+				},
+				{
+					title: "Введите мобильный телефон",
+					type: "input",
+					inputType: "number",
+					id: "6",
+					regexp: "^[ 0-9]+$",
+					placeholder: "Input number",
+					error: "Incorrect Number"
 				}
 			],
 			exportArray: [],
