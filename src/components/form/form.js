@@ -18,6 +18,7 @@ export default class Form extends Component {
 					value: "dix@gmail.com",
 					onChange: "",
 					placeholder: "Input email",
+					regexp: /^[\w-\.+]+@[\w-]+\.[a-z]{2,4}(\.[a-z]{2,4})?(\.[a-z]{2,4})?$/i,
 					error: "Incorrect E-mail"
 				},
 				{
@@ -28,6 +29,7 @@ export default class Form extends Component {
 					name: "text",
 					value: "Ditrix",
 					onChange: "",
+					regexp: /\S{4, 48}/,
 					placeholder: "Input text",
 					error: "Incorrect First Name!"
 				},
@@ -41,7 +43,7 @@ export default class Form extends Component {
 					cols: "25",
 					maxlength: "2000",
 					placeholder: "Input textarea",
-					error: "Incorrect First Name!"
+					error: "Incorrect text!"
 				},
 				{
 					title: "Выбирите пол",
@@ -56,9 +58,10 @@ export default class Form extends Component {
 					]
 				},
 				{
-					title: "Выбирите пол",
+					title: "Выбирите date",
 					type: "datapicker",
-					inputType: "date",
+					subtype: "date",
+					inputType: "datetime-local",
 					id: "5",
 					name: "datapicker",
 					value: '20.05.2015',
@@ -67,34 +70,52 @@ export default class Form extends Component {
 					dateFormat: "DD.MM.YYYY"
 				}
 			],
-			exportArray: []
+			exportArray: [],
+			editArray: ""
 		}
 		this.handleInput = this.handleInput.bind(this);
+		this.expArray = [];
 	}
 
 	handleInput(e) {
 		console.log(e)
 		let value = e.event.target.value;
 		let name = e.event.target.name;
-		console.log(`name: ${name} value: ${value}`)
-		// validation:
-	// this.setState( prevState => ({ newUser : 
-	// 	 {...prevState.newUser, [name]: value
-	// 	 }
-	//    }), () => console.log(this.state.newUser))
+		let jsonItem = {
+			type: name,
+			value: value
+		};
+		this.setState(({ exportArray }) => {
+				const arrA = [
+					...exportArray,
+					jsonItem
+				];
+				return {
+					exportArray: arrA
+				}
+			}
+		);
+	}
+
+	SaveForm = (e) => {
+		e.preventDefault();
+		const { exportArray } = this.state;
+		console.log('exportArray :== ', JSON.stringify(exportArray));
 	}
 
 	GenerateForm() {
 		let array = this.state.arrform;
-		const todoItems = array.map((arrform, index) => {
+		const ItemsForm = array.map((arrform, index) => {
 				if (arrform.type === "input") {
 					return(
 						<Input
 							key={index}
+							id={index}
 							type={arrform.inputType}
 							title= {arrform.title} 
 							name= {arrform.name}
 							placeholder={arrform.placeholder}
+							regexp={arrform.regexp}
 							error={arrform.error}
 							onChange={this.handleInput}
 						/>
@@ -131,20 +152,34 @@ export default class Form extends Component {
 				if (arrform.type === "checkbox") { }
 				if (arrform.type === "datapicker") {
 					return (
-						<p key={index}>DatePicker</p>
+						<Input
+						key={index}
+						type={arrform.subtype}
+						title= {arrform.title} 
+						name= {arrform.name}
+						placeholder={arrform.placeholder}
+						error={arrform.error}
+						onChange={onchange = (event) => { this.handleInput({ event })}}
+					/>
 					);
 				}
 			}
 		);
-		console.log('todoItems', todoItems)
-		return todoItems;
+		console.log('ItemsForm: ', ItemsForm)
+		return ItemsForm;
 	}
 
 	render() {
+		console.log();
 		return (
 			<div>
 				<h1>Generate Form</h1>
-				{ this.GenerateForm() }
+				<form onSubmit={this.SaveForm}>
+					<fieldset>
+					{ this.GenerateForm() }
+					</fieldset>
+					<button className="btn btn-success" type="submit">Отправить</button>
+				</form>
 			</div>
 		);
 	}

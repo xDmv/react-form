@@ -3,20 +3,21 @@ import React, { Component } from 'react';
 export default class Select extends Component {
 
 	render() {
+		const {title, name, index, onchange, options} = this.props;
 
 		return (
 			<div className="form-group">
-				<label htmlFor={this.props.name}> {this.props.title} </label>
+				<label htmlFor={name}> {title} </label>
 				<select
-					id = {this.props.index}
-					name={this.props.name}
-
-					onChange={this.props.onchange}
+					id = {index}
+					name={name}
+					onChange={onchange}
 					className="form-control">
-					{this.props.options.map((data, index) => {
+					{options.map((data, index) => {
 						return (
 							<option
 								key={index}
+								id={index}
 								value={data.value}
 								label={data.option}>
 									{data.option}
