@@ -18,14 +18,15 @@ export default class AddInput extends Component {
 	}
 
 	render() {
-		const { title, index, placeholder} = this.props;
-		// console.log('this.state.Label:', this.state.Label);
+		const { title, index, placeholder, name } = this.props;
+		let type = (name === 'maxlength') ? "number" : "text";
+		console.log(`name: ${name} type: ${type}`);
 		return (
 			<div className="form-group col-sm-12 col-md-6">
 				<label className="control-label">{title}</label>
 				<input
 					key={index}
-					type="text"
+					type={type}
 					className="form-control"
 					id={index}
 					placeholder={(placeholder) ? `${placeholder}` : "Введите значение"}

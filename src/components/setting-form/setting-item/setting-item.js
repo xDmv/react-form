@@ -14,28 +14,52 @@ export default class SettingItem extends Component {
 				{ id: 4, label: "Однострочное поле электронный адрес (email)", value: "input", subtype: "email" },
 				{ id: 5, label: "Однострочное поле пароль (password)", value: "input", subtype: "password" },
 				{ id: 6, label: "Однострочное поле дабавить файл (file)", value: "input", subtype: "file" },
-				{ id: 7, label: "Многострочное поле", value: "texterea", subtype: "" },
+				{ id: 7, label: "Многострочное поле (texterea)", value: "texterea", subtype: "" },
 				{ id: 8, label: "Поле выбора (select)", value: "select", subtype: "" },
 				{ id: 9, label: "Поле выбора даты", value: "datapicker", subtype: "date" },
 				{ id: 10, label: "Поле выбора веремени", value: "datapicker", subtype: "time" },
 				{ id: 11, label: "Поле выбора даты и времени", value: "datapicker", subtype: "datetime-local" },
-				{ id: 12, label: "Переключатели (radio)", value: "radio", subtype: "" },
-				{ id: 13, label: "Флажки (checkbox)", value: "checkbox", subtype: "" },
+				{ id: 12, label: "Группа переключателей (radio)", value: "radio", subtype: "" },
+				{ id: 13, label: "Группа флажков (checkbox)", value: "checkbox", subtype: "" },
 			],
 			options: [],
 			typeselect: '',
-			isShownSelect: true,
-			InputType: false,
-			TextereaType: false
+			isShownSelect: false,
+			isShownAdd: true
 		}
 
 		this.SelectOptions = this.SelectOptions.bind(this);
+		this.onClear = this.onClear.bind(this);
+		this.onShownAddItem = this.onShownAddItem.bind(this);
 	}
 
 	SelectOptions(e) {
 		let type = e.target.value;
 		this.setState(
-			{typeselect: type}
+			{
+				typeselect: type,
+				isShownSelect: true
+			}
+		);
+	}
+
+	onClear() {
+		this.setState(
+			{
+				typeselect: '',
+				isShownSelect: false
+			}
+		);
+	}
+
+	onShownAddItem() {
+		this.setState((state) => {
+			return {
+				isShownAdd: !state.isShownAdd,
+				typeselect: '',
+				isShownSelect: false
+			}
+		}
 		);
 	}
 
@@ -44,7 +68,7 @@ export default class SettingItem extends Component {
 	}
 
 	AddItem() {
-		const { itemselect, typeselect } = this.state;
+		const { itemselect, typeselect, isShownSelect } = this.state;
 		let Items = itemselect;
 		let optionsItems = Items.map((data, index) => {
 			let type = data.value;
@@ -61,44 +85,46 @@ export default class SettingItem extends Component {
 		});
 
 		return (
-			<div className="card border-secondary mb-3">
+			<div className="alert alert-dismissible alert-success">
+				<button type="button" className="close" onClick={this.onShownAddItem}>&times;</button>
 				<div className="card-header">
 					<div className="form-group">
 						<label htmlFor="exampleSelect1">Выберите тип элемента</label>
 						<select
 							className="form-control"
 							id="exampleSelect1"
-							onChange={this.SelectOptions
-							}>
+							onChange={this.SelectOptions}
+							disabled={isShownSelect}>
 							{optionsItems}
 						</select>
 					</div>
 					<GenerateSettingItem
 						datatype={typeselect}
+						Cancel={this.onClear}
 						GetSettingItem={this.GetSettingItem}
 					/>
 				</div>
+
 			</div>
 		);
 	}
 
 	render() {
-
-		return this.AddItem();
-
-		// return (
-		// 	<form>
-		// 		{ this.AddItem() }
-		// 		{/* {isShownSelect && (
-		// 		<select name="costum_element" value="" onChange={this.TypeSelect}>
-		// 			{ default_options }
-		// 		</select>
-		// 		)}
-		// 		<div>
-		// 			{InputType && (<div>{this.SettingInput()}</div>)}
-		// 			{TextereaType && (<div>{this.SettingTexterea()}</div>)}
-		// 		</div> */}
-		// 	</form>
-		// );
+		const { isShownAdd } = this.state;
+		return (
+			<div>
+				{!isShownAdd && (this.AddItem())}
+				{isShownAdd && (
+					<div className="col-sm-12 col-md-12 text-center">
+						<button
+							type="button"
+							className="btn btn-primary"
+							onClick={this.onShownAddItem} >
+								Добавить элемент
+							</button>
+					</div>
+				)}
+			</div>
+		);
 	}
 }

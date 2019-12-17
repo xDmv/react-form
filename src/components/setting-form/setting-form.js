@@ -11,12 +11,9 @@ export default class SettingForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<h3>Добавте необходимые элименты для создания формы.</h3>
+			<div className="text-center">
+				<h3>Добавьте необходимые элементы для создания формы.</h3>
 				<SettingItem addElement={() => console.log('add element array')}/>
-				<div>
-					<button type="button" >Add element +</button>
-				</div>
 			</div>
 		);
 	}
