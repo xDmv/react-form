@@ -16,7 +16,6 @@ export default class Form extends Component {
 					id: "email",
 					name: "email",
 					value: "dix@gmail.com",
-					onChange: "",
 					placeholder: "Input email",
 					regexp: `^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`,
 					error: "Incorrect E-mail"
@@ -28,7 +27,6 @@ export default class Form extends Component {
 					id: "2",
 					name: "text",
 					value: "Ditrix",
-					onChange: "",
 					regexp: "^[A-Za-zА-Яа-яЁё]{4,}",
 					placeholder: "Input text",
 					error: "Incorrect First Name!"
@@ -60,14 +58,12 @@ export default class Form extends Component {
 				{
 					title: "Выбирите date",
 					type: "datapicker",
-					subtype: "date",
-					inputType: "datetime-local",
+					subtype: "datetime-local",
+					inputType: "date",
 					id: "5",
 					name: "datapicker",
 					value: '20.05.2015',
-					mindate: '',
-					maxdate: '',
-					dateFormat: "DD.MM.YYYY"
+					regexp: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
 				},
 				{
 					title: "Введите мобильный телефон",
@@ -163,7 +159,7 @@ export default class Form extends Component {
 					return (
 						<Input
 						key={index}
-						type={arrform.subtype}
+						type={arrform.inputType}
 						title= {arrform.title} 
 						name= {arrform.name}
 						placeholder={arrform.placeholder}

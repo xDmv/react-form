@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import SettingItem from './setting-item';
 
 export default class SettingForm extends Component {
-
-	state = {
-		arrform: []
+	constructor(props) {
+		super(props);
+		this.state = {
+			arrform: []
+		}
 	}
 
 	render() {
