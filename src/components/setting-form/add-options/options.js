@@ -4,6 +4,7 @@ export default class Options extends Component {
 	constructor(props) {
 		super(props);
 		this.minId = 100;
+		this.Lable = '';
 		this.state = {
 			optionitems: [],
 			isShownEdit: false,
@@ -18,7 +19,7 @@ export default class Options extends Component {
 
 	onSave() {
 		this.setState((state) => {
-			const item = this.createItem(state.label);
+			const item = this.createItem(this.Lable);
 			if (state.optionitems) {
 				return {
 					isSave: true,
@@ -44,9 +45,7 @@ export default class Options extends Component {
 	}
 
 	onChange(e) {
-		this.setState( {
-			label: e.target.value,
-		});
+		this.Lable = e.target.value;
 	}
 
 	onEdit = (id)  => {
@@ -62,8 +61,8 @@ export default class Options extends Component {
 			<div className="form-group">
 				<div className="input-group mb-3">
 					<input
-						key='0'
-						id={++this.minId}
+						key={++this.minId}
+						id={this.minId}
 						type="text"
 						className="form-control"
 						onChange={this.onChange}
@@ -82,13 +81,13 @@ export default class Options extends Component {
 		const { optionitems } = this.state;
 		let items = optionitems;
 		console.log('opt items: ', items)
-		let listOptions = items.map((data, index) => {
+		let listOptions = items.map((data) => {
 			return (
-				<div className="form-group">
+				<div key={++this.minId} className="form-group">
 					<div className="input-group mb-3">
 						<input
-							key={++index}
-							id={index}
+							key={++this.minId}
+							id={this.minId}
 							type="text"
 							className="form-control"
 							value = {data.label}

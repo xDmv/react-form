@@ -63,7 +63,7 @@ export default class GenerateSettingItem extends Component {
 					/>
 					<div className="col-sm-12 col-md-12 text-center">
 						<button type="submit" className="btn btn-primary">Сохранить</button>
-						<button type="button" className="btn btn-secondary" onClick={this.onCancel} >Отмена</button>
+						<button type="button" className="btn btn-secondary ml-2" onClick={this.onCancel} >Отмена</button>
 					</div>
 				</div>
 			);
@@ -109,7 +109,7 @@ export default class GenerateSettingItem extends Component {
 					/>
 					<div className="col-sm-12 col-md-12 text-center">
 						<button type="submit" className="btn btn-primary">Сохранить</button>
-						<button type="button" className="btn btn-secondary" onClick={this.onCancel} >Отмена</button>
+						<button type="button" className="btn btn-secondary ml-2" onClick={this.onCancel} >Отмена</button>
 					</div>
 				</div>
 			);
@@ -123,7 +123,7 @@ export default class GenerateSettingItem extends Component {
 					<div className="form-group col-sm-12 col-md-6">
 						<fieldset disabled>
 							<label className="control-label" htmlFor="disabledInput">Тип поля</label>
-							<input className="form-control" id="type" type="text" defaultValue={typeItem} disabled />
+							<input key={typeItem} className="form-control" id="type" type="text" defaultValue={typeItem} disabled />
 						</fieldset>
 					</div>
 					<AddInput
@@ -134,11 +134,12 @@ export default class GenerateSettingItem extends Component {
 						exportData={this.SaveOnChange}
 					/>
 					<Options
+						index='2'
 						Getarray={this.GetOptions}
 					/>
 					<div className="col-sm-12 col-md-12 text-center">
 						<button type="submit" className="btn btn-primary">Сохранить</button>
-						<button type="button" className="btn btn-secondary" onClick={this.onCancel} >Отмена</button>
+						<button type="button" className="btn btn-secondary ml-2" onClick={this.onCancel} >Отмена</button>
 					</div>
 				</div>
 			)
