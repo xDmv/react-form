@@ -126,7 +126,7 @@ export default class Options extends Component {
 				{this.onShownItem()}
 				{!isShownEdit && this.onAddItem()}
 				{isSave && (
-					<button type="button" className="btn btn-primary"onClick={this.onButtonAdd} >
+					<button type="button" className="btn btn-primary m-2"onClick={this.onButtonAdd} >
 						<i className="fa fa-plus"> Еще добавить элимент выбора</i>
 					</button>
 				)}
