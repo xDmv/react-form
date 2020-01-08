@@ -117,6 +117,7 @@ export default class SettingItem extends Component {
 				{isShownAdd && (
 					<div className="col-sm-12 col-md-12 text-center">
 						<button
+							id="additem"
 							type="button"
 							className="btn btn-primary"
 							onClick={this.onShownAddItem} >
